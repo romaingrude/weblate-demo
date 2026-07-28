@@ -598,6 +598,11 @@ async function loadTranslations(lang) {
     localStorage.setItem("language", lang);
 }
 </script>
+<script>
+document.getElementById("languageSelector").addEventListener("change", e => {
+    loadTranslations(e.target.value);
+});
+</script>
                                 
                             </div>
                             <div class="col--6__md">
