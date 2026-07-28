@@ -1,5 +1,7 @@
 {
   "welcome_message": "Welcome to our application!",
+  "login.username": "Username",
+  "login.password":"Password",
   "user_profile": {
     "title": "User Profile",
     "settings": "Account Settings"
