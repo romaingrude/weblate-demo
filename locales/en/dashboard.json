@@ -1,6 +1,7 @@
 {
-  "title": "Dashboard",
-  "welcome": "Welcome back",
-  "recentDonors": "Recent donors",
-  "statistics": "Statistics"
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "totalDonations": "Total donations"
+  }
 }
