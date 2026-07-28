@@ -1,6 +1,7 @@
 {
-  "title": "Account",
-  "changePassword": "Change password",
-  "email": "Email",
-  "phone": "Phone number"
+  "account": {
+    "title": "Account",
+    "email": "Email address",
+    "changePassword": "Change password"
+  }
 }
