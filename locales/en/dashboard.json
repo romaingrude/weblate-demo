@@ -2,6 +2,7 @@
   "dashboard": {
     "title": "Dashboard",
     "welcome": "Welcome back",
-    "totalDonations": "Total donations"
+    "totalDonations": "Total donations",
+    "myLiLac": "My Li-Lac"
   }
 }
