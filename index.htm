@@ -579,7 +579,10 @@ async function loadTranslations(lang) {
     const translations = {};
 
     for (const response of responses) {
-        if (!response.ok) continue;
+        if (!response.ok) {
+            console.error(`Couldn't load translation file.`);
+            continue;
+        }
 
         Object.assign(translations, await response.json());
     }
@@ -590,25 +593,14 @@ async function loadTranslations(lang) {
             .split(".")
             .reduce((obj, part) => obj?.[part], translations);
 
-        if (value) {
-            el.textContent = value;
-        }
-    });
-}
-
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.dataset.i18n;
-        const value = key.split(".").reduce((obj, part) => obj?.[part], translations);
-
-        if (value) {
+        if (value !== undefined) {
             el.textContent = value;
         }
     });
 
     localStorage.setItem("language", lang);
 }
-</script>
-<script>
+
 document.getElementById("languageSelector").addEventListener("change", e => {
     loadTranslations(e.target.value);
 });
