@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>I18n Practice</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    select { padding: 5px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+  <!-- Language Selector -->
+  <label for="lang-select">Language:</label>
+  <select id="lang-select">
+    <option value="en">English</option>
+    <option value="fr">Français</option>
+  </select>
+
+  <hr>
+
+  <!-- Content with placeholders -->
+  <h1 data-i18n="dashboard.title">[dashboard.title]</h1>
+  <p data-i18n="dashboard.welcome">[dashboard.welcome]</p>
+  <button data-i18n="donor.title">[donor.title]</button>
+
+  <script>
+    // Utility: resolve nested keys like "dashboard.title"
+    function resolveNested(obj, path) {
+      return path.split('.').reduce((acc, part) => acc?.[part], obj);
+    }
+
+    async function loadTranslations(lang) {
+      try {
+        // List all translation files you want to load
+        const files = ["dashboard.json", "account.json", "donor.json"];
+
+        // Load all files in parallel
+        const filePromises = files.map(file =>
+          fetch(`./locales/${lang}/${file}`).then(res => res.json())
+        );
+
+        // Merge all JSON files into one object
+        const loadedFiles = await Promise.all(filePromises);
+        const translations = Object.assign({}, ...loadedFiles);
+
+        // Replace all elements with data-i18n attributes
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+          const key = el.getAttribute("data-i18n");
+          const value = resolveNested(translations, key);
+          el.textContent = value || `[missing: ${key}]`;
+        });
+
+      } catch (err) {
+        console.error("Error loading translations:", err);
+      }
+    }
+
+    // Initial load
+    loadTranslations("en");
+
+    // Change language on selection
+    document.getElementById("lang-select").addEventListener("change", (e) => {
+      loadTranslations(e.target.value);
+    });
+  </script>
+
+</body>
+</html>
