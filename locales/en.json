@@ -1,0 +1,9 @@
+{
+  "welcome_message": "Welcome to our application!",
+  "user_profile": {
+    "title": "User Profile",
+    "settings": "Account Settings"
+  },
+  "items_count_one": "You have {{count}} item.",
+  "items_count_other": "You have {{count}} items."
+}
