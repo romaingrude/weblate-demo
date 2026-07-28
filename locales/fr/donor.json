@@ -1,0 +1,8 @@
+{
+    "donor": {
+        "title": "Donneur",
+        "firstName": "Prénom",
+        "lastName": "Nom de famille",
+        "donationAmount": "Nombre de dons"
+    }
+}
